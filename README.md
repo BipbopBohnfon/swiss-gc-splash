@@ -1,5 +1,6 @@
 # Notes
 This is a fork fo the original Swiss-GC repo. I'm just trying to add a splash screen to the gamecube on boot.
+
 Remember kids, sudo pacman -S dkp-libs/ppc-zlib before trying to use -lz in your ppc port of ld.
 
 
