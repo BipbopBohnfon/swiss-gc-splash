@@ -60,6 +60,8 @@ char txtbuffer[2048];           //temporary text buffer
 file_handle curFile;    //filedescriptor for current file
 file_handle curDir;     //filedescriptor for current directory
 
+static uiDrawObj_t *bk;
+
 // Menu related variables
 int curMenuLocation = ON_FILLIST; //where are we on the screen?
 int curMenuSelection = 0;	      //menu selection
@@ -2394,8 +2396,40 @@ void select_device(int type)
 	devices[type] = allDevices[curDevice];
 }
 
+s32 mp3ReaderSplash(void *cbdata, void *dst, s32 size) {
+    file_handle *file = cbdata;
+    devices[DEVICE_CUR]->seekFile(file,file->offset,DEVICE_HANDLER_SEEK_SET);
+    int ret = devices[DEVICE_CUR]->readFile(file,dst,size);
+    return ret;
+}
+
 void menu_loop()
-{ 
+{
+    upToParent(&curDir);
+    scanFiles();
+
+    MP3Player_Init();
+    MP3Player_Volume(192);
+
+    int curMP3 = 0;
+    //int startTime = (gettick() / (40500000 / 1000));
+    //int currentFrame = 1;
+    file_handle *dir = getCurrentDirEntries();
+    for (int i = 0; i < getCurrentDirEntryCount(); i++) {
+        if(!strcmp(dir[i].name,"sdc:/chipi.mp3")) {
+            curMP3 = i;
+            break;
+        }
+    }
+    MP3Player_PlayFile(&dir[curMP3], &mp3ReaderSplash, NULL);
+    uiDrawObj_t *boykisser = DrawPublish(DrawImage(TEX_BK, 0, 0, 640, 480, 0, 0.0f, 1.0f, 0.0f, 1.0f, 0));
+    while (MP3Player_IsPlaying()) {
+
+    }
+    DrawDispose(boykisser);
+    //DrawInit();
+    //DrawLoadBackdrop();
+
 	while(padsButtonsHeld() & PAD_BUTTON_A) { VIDEO_WaitVSync (); }
 	// We don't care if a subsequent device is "default"
 	if(needsDeviceChange) {

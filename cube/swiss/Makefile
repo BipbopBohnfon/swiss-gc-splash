@@ -56,7 +56,8 @@ SOURCES		:=  source \
 			  source/xxhash
 DATA		:=	data  
 TEXTURES	:=	source/images \
-              source/images/buttons
+              source/images/buttons \
+              source/images/bk
 INCLUDES	:=	include $(SOURCES) ..
 
 #---------------------------------------------------------------------------------

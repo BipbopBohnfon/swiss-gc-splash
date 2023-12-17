@@ -34,6 +34,7 @@
 TPLFile imagesTPL;
 TPLFile buttonsTPL;
 TPLFile backdropTPL;
+TPLFile bkTPL;
 GXTexObj backdropTexObj;
 GXTlutObj backdropTlutObj;
 GXTexObj gcdvdsmallTexObj;
@@ -74,6 +75,61 @@ GXTexObj fileimgTexObj;
 GXTexObj dirimgTexObj;
 GXTexObj gcloaderTexObj;
 GXTexObj m2loaderTexObj;
+GXTexObj bk01TexObj;
+GXTexObj bk02TexObj;
+GXTexObj bk03TexObj;
+GXTexObj bk04TexObj;
+GXTexObj bk05TexObj;
+GXTexObj bk06TexObj;
+GXTexObj bk07TexObj;
+GXTexObj bk08TexObj;
+GXTexObj bk09TexObj;
+GXTexObj bk10TexObj;
+GXTexObj bk11TexObj;
+GXTexObj bk12TexObj;
+GXTexObj bk13TexObj;
+GXTexObj bk14TexObj;
+GXTexObj bk15TexObj;
+GXTexObj bk16TexObj;
+GXTexObj bk17TexObj;
+GXTexObj bk18TexObj;
+GXTexObj bk19TexObj;
+GXTexObj bk20TexObj;
+GXTexObj bk21TexObj;
+GXTexObj bk22TexObj;
+GXTexObj bk23TexObj;
+GXTexObj bk24TexObj;
+GXTexObj bk25TexObj;
+GXTexObj bk26TexObj;
+GXTexObj bk27TexObj;
+GXTexObj bk28TexObj;
+GXTexObj bk29TexObj;
+GXTexObj bk30TexObj;
+GXTexObj bk31TexObj;
+GXTexObj bk32TexObj;
+GXTexObj bk33TexObj;
+GXTexObj bk34TexObj;
+GXTexObj bk35TexObj;
+GXTexObj bk36TexObj;
+GXTexObj bk37TexObj;
+GXTexObj bk38TexObj;
+GXTexObj bk39TexObj;
+GXTexObj bk40TexObj;
+GXTexObj bk41TexObj;
+GXTexObj bk42TexObj;
+GXTexObj bk43TexObj;
+GXTexObj bk44TexObj;
+GXTexObj bk45TexObj;
+GXTexObj bk46TexObj;
+GXTexObj bk47TexObj;
+GXTexObj bk48TexObj;
+GXTexObj bk49TexObj;
+GXTexObj bk50TexObj;
+GXTexObj bk51TexObj;
+GXTexObj bk52TexObj;
+GXTexObj bk53TexObj;
+GXTexObj bk54TexObj;
+GXTexObj *bkTexObjCurrent;
 
 static char fbTextBuffer[256];
 
@@ -84,6 +140,7 @@ static char  video_thread_stack[VIDEO_STACK_SIZE];
 static lwp_t video_thread = LWP_THREAD_NULL;
 static mutex_t _videomutex = LWP_MUTEX_NULL;
 static int threadAlive = 0;
+static int start_time = -0451;
 
 enum VideoEventType
 {
@@ -319,6 +376,7 @@ static void init_textures()
 {
 	TPL_OpenTPLFromMemory(&imagesTPL, (void *)images_tpl, images_tpl_size);
 	TPL_OpenTPLFromMemory(&buttonsTPL, (void *)buttons_tpl, buttons_tpl_size);
+    TPL_OpenTPLFromMemory(&bkTPL, (void *)bk_tpl, bk_tpl_size);
 	TPL_GetTextureCI(&imagesTPL, backdrop, &backdropTexObj, &backdropTlutObj, GX_TLUT0);
 	GX_InitTexObjUserData(&backdropTexObj, &backdropTlutObj);
 	TPL_GetTexture(&imagesTPL, gcdvdsmall, &gcdvdsmallTexObj);
@@ -362,6 +420,60 @@ static void init_textures()
 	TPL_GetTexture(&imagesTPL, dirimg, &dirimgTexObj);
 	TPL_GetTexture(&imagesTPL, gcloaderimg, &gcloaderTexObj);
 	TPL_GetTexture(&imagesTPL, m2loaderimg, &m2loaderTexObj);
+    TPL_GetTexture(&bkTPL, bk01, &bk01TexObj);
+    TPL_GetTexture(&bkTPL, bk02, &bk02TexObj);
+    TPL_GetTexture(&bkTPL, bk03, &bk03TexObj);
+    TPL_GetTexture(&bkTPL, bk04, &bk04TexObj);
+    TPL_GetTexture(&bkTPL, bk05, &bk05TexObj);
+    TPL_GetTexture(&bkTPL, bk06, &bk06TexObj);
+    TPL_GetTexture(&bkTPL, bk07, &bk07TexObj);
+    TPL_GetTexture(&bkTPL, bk08, &bk08TexObj);
+    TPL_GetTexture(&bkTPL, bk09, &bk09TexObj);
+    TPL_GetTexture(&bkTPL, bk10, &bk10TexObj);
+    TPL_GetTexture(&bkTPL, bk11, &bk11TexObj);
+    TPL_GetTexture(&bkTPL, bk12, &bk12TexObj);
+    TPL_GetTexture(&bkTPL, bk13, &bk13TexObj);
+    TPL_GetTexture(&bkTPL, bk14, &bk14TexObj);
+    TPL_GetTexture(&bkTPL, bk15, &bk15TexObj);
+    TPL_GetTexture(&bkTPL, bk16, &bk16TexObj);
+    TPL_GetTexture(&bkTPL, bk17, &bk17TexObj);
+    TPL_GetTexture(&bkTPL, bk18, &bk18TexObj);
+    TPL_GetTexture(&bkTPL, bk19, &bk19TexObj);
+    TPL_GetTexture(&bkTPL, bk20, &bk20TexObj);
+    TPL_GetTexture(&bkTPL, bk21, &bk21TexObj);
+    TPL_GetTexture(&bkTPL, bk22, &bk22TexObj);
+    TPL_GetTexture(&bkTPL, bk23, &bk23TexObj);
+    TPL_GetTexture(&bkTPL, bk24, &bk24TexObj);
+    TPL_GetTexture(&bkTPL, bk25, &bk25TexObj);
+    TPL_GetTexture(&bkTPL, bk26, &bk26TexObj);
+    TPL_GetTexture(&bkTPL, bk27, &bk27TexObj);
+    TPL_GetTexture(&bkTPL, bk28, &bk28TexObj);
+    TPL_GetTexture(&bkTPL, bk29, &bk29TexObj);
+    TPL_GetTexture(&bkTPL, bk30, &bk30TexObj);
+    TPL_GetTexture(&bkTPL, bk31, &bk31TexObj);
+    TPL_GetTexture(&bkTPL, bk32, &bk32TexObj);
+    TPL_GetTexture(&bkTPL, bk33, &bk33TexObj);
+    TPL_GetTexture(&bkTPL, bk34, &bk34TexObj);
+    TPL_GetTexture(&bkTPL, bk35, &bk35TexObj);
+    TPL_GetTexture(&bkTPL, bk36, &bk36TexObj);
+    TPL_GetTexture(&bkTPL, bk37, &bk37TexObj);
+    TPL_GetTexture(&bkTPL, bk38, &bk38TexObj);
+    TPL_GetTexture(&bkTPL, bk39, &bk39TexObj);
+    TPL_GetTexture(&bkTPL, bk40, &bk40TexObj);
+    TPL_GetTexture(&bkTPL, bk41, &bk41TexObj);
+    TPL_GetTexture(&bkTPL, bk42, &bk42TexObj);
+    TPL_GetTexture(&bkTPL, bk43, &bk43TexObj);
+    TPL_GetTexture(&bkTPL, bk44, &bk44TexObj);
+    TPL_GetTexture(&bkTPL, bk45, &bk45TexObj);
+    TPL_GetTexture(&bkTPL, bk46, &bk46TexObj);
+    TPL_GetTexture(&bkTPL, bk47, &bk47TexObj);
+    TPL_GetTexture(&bkTPL, bk48, &bk48TexObj);
+    TPL_GetTexture(&bkTPL, bk49, &bk49TexObj);
+    TPL_GetTexture(&bkTPL, bk50, &bk50TexObj);
+    TPL_GetTexture(&bkTPL, bk51, &bk51TexObj);
+    TPL_GetTexture(&bkTPL, bk52, &bk52TexObj);
+    TPL_GetTexture(&bkTPL, bk53, &bk53TexObj);
+    TPL_GetTexture(&bkTPL, bk54, &bk54TexObj);
 }
 
 static void drawInit()
@@ -460,6 +572,177 @@ static void _DrawSimpleBox(int x, int y, int width, int height, int depth, GXCol
 	_drawRect(x+(width/2), y+(height/2), width/2, height/2, depth, borderColor, ((float)width/32), 0.0f, ((float)height/32), 0.0f);
 }
 
+// I'm so sorry
+void select_bk_frame(int frame) {
+    switch(frame) {
+        case 1:
+            bkTexObjCurrent = &bk01TexObj;
+            break;
+        case 2:
+            bkTexObjCurrent = &bk02TexObj;
+            break;
+        case 3:
+            bkTexObjCurrent = &bk03TexObj;
+            break;
+        case 4:
+            bkTexObjCurrent = &bk04TexObj;
+            break;
+        case 5:
+            bkTexObjCurrent = &bk05TexObj;
+            break;
+        case 6:
+            bkTexObjCurrent = &bk06TexObj;
+            break;
+        case 7:
+            bkTexObjCurrent = &bk07TexObj;
+            break;
+        case 8:
+            bkTexObjCurrent = &bk08TexObj;
+            break;
+        case 9:
+            bkTexObjCurrent = &bk09TexObj;
+            break;
+        case 10:
+            bkTexObjCurrent = &bk10TexObj;
+            break;
+        case 11:
+            bkTexObjCurrent = &bk11TexObj;
+            break;
+        case 12:
+            bkTexObjCurrent = &bk12TexObj;
+            break;
+        case 13:
+            bkTexObjCurrent = &bk13TexObj;
+            break;
+        case 14:
+            bkTexObjCurrent = &bk14TexObj;
+            break;
+        case 15:
+            bkTexObjCurrent = &bk15TexObj;
+            break;
+        case 16:
+            bkTexObjCurrent = &bk16TexObj;
+            break;
+        case 17:
+            bkTexObjCurrent = &bk17TexObj;
+            break;
+        case 18:
+            bkTexObjCurrent = &bk18TexObj;
+            break;
+        case 19:
+            bkTexObjCurrent = &bk19TexObj;
+            break;
+        case 20:
+            bkTexObjCurrent = &bk20TexObj;
+            break;
+        case 21:
+            bkTexObjCurrent = &bk21TexObj;
+            break;
+        case 22:
+            bkTexObjCurrent = &bk22TexObj;
+            break;
+        case 23:
+            bkTexObjCurrent = &bk23TexObj;
+            break;
+        case 24:
+            bkTexObjCurrent = &bk24TexObj;
+            break;
+        case 25:
+            bkTexObjCurrent = &bk25TexObj;
+            break;
+        case 26:
+            bkTexObjCurrent = &bk26TexObj;
+            break;
+        case 27:
+            bkTexObjCurrent = &bk27TexObj;
+            break;
+        case 28:
+            bkTexObjCurrent = &bk28TexObj;
+            break;
+        case 29:
+            bkTexObjCurrent = &bk29TexObj;
+            break;
+        case 30:
+            bkTexObjCurrent = &bk30TexObj;
+            break;
+        case 31:
+            bkTexObjCurrent = &bk31TexObj;
+            break;
+        case 32:
+            bkTexObjCurrent = &bk32TexObj;
+            break;
+        case 33:
+            bkTexObjCurrent = &bk33TexObj;
+            break;
+        case 34:
+            bkTexObjCurrent = &bk34TexObj;
+            break;
+        case 35:
+            bkTexObjCurrent = &bk35TexObj;
+            break;
+        case 36:
+            bkTexObjCurrent = &bk36TexObj;
+            break;
+        case 37:
+            bkTexObjCurrent = &bk37TexObj;
+            break;
+        case 38:
+            bkTexObjCurrent = &bk38TexObj;
+            break;
+        case 39:
+            bkTexObjCurrent = &bk39TexObj;
+            break;
+        case 40:
+            bkTexObjCurrent = &bk40TexObj;
+            break;
+        case 41:
+            bkTexObjCurrent = &bk41TexObj;
+            break;
+        case 42:
+            bkTexObjCurrent = &bk42TexObj;
+            break;
+        case 43:
+            bkTexObjCurrent = &bk43TexObj;
+            break;
+        case 44:
+            bkTexObjCurrent = &bk44TexObj;
+            break;
+        case 45:
+            bkTexObjCurrent = &bk45TexObj;
+            break;
+        case 46:
+            bkTexObjCurrent = &bk46TexObj;
+            break;
+        case 47:
+            bkTexObjCurrent = &bk47TexObj;
+            break;
+        case 48:
+            bkTexObjCurrent = &bk48TexObj;
+            break;
+        case 49:
+            bkTexObjCurrent = &bk49TexObj;
+            break;
+        case 50:
+            bkTexObjCurrent = &bk50TexObj;
+            break;
+        case 51:
+            bkTexObjCurrent = &bk51TexObj;
+            break;
+        case 52:
+            bkTexObjCurrent = &bk52TexObj;
+            break;
+        case 53:
+            bkTexObjCurrent = &bk53TexObj;
+            break;
+        case 54:
+            bkTexObjCurrent = &bk54TexObj;
+            break;
+        default:
+            bkTexObjCurrent = &bk01TexObj;
+            break;
+    }
+}
+
 // Internal
 static void _DrawImageNow(int textureId, int x, int y, int width, int height, int depth, float s1, float s2, float t1, float t2, int centered) {
 	GXTexObj *texObj = NULL;
@@ -554,6 +837,14 @@ static void _DrawImageNow(int textureId, int x, int y, int width, int height, in
 		case TEX_M2LOADER:
 			texObj = &m2loaderTexObj;
 			break;
+        case TEX_BK_LOAD:
+            texObj = &bk01TexObj;
+            break;
+        case TEX_BK:
+            if (start_time == -0451) start_time = (gettick() / (40500000 / 1000));
+            select_bk_frame(1 + (((gettick() / (40500000 / 1000)) - start_time) / 125));
+            texObj = bkTexObjCurrent;
+            break;
 	}
 	
 	GX_InvalidateTexAll();
@@ -588,6 +879,25 @@ uiDrawObj_t* DrawImage(int textureId, int x, int y, int width, int height, int d
 	event->type = EV_IMAGE;
 	event->data = eventData;
 	return event;
+}
+
+uiDrawObj_t* DrawBoykisser(int textureId, int x, int y, int width, int height, int depth, float s1, float s2, float t1, float t2, int centered)
+{
+    drawImageEvent_t *eventData = calloc(1, sizeof(drawImageEvent_t));
+    eventData->textureId = textureId;
+    eventData->x = centered ? ((int) x - width/2) : x;
+    eventData->y = y;
+    eventData->width = width;
+    eventData->height = height;
+    eventData->depth = depth;
+    eventData->s1 = s1;
+    eventData->s2 = s2;
+    eventData->t1 = t1;
+    eventData->t2 = t2;
+    uiDrawObj_t *event = calloc(1, sizeof(uiDrawObj_t));
+    event->type = EV_IMAGE;
+    event->data = eventData;
+    return event;
 }
 
 // Internal

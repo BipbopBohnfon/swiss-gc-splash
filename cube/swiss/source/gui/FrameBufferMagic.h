@@ -39,6 +39,8 @@
 #include "images.h"
 #include "buttons_tpl.h"
 #include "buttons.h"
+#include "bk_tpl.h"
+#include "bk.h"
 
 typedef struct uiDrawObj {
     int type;
@@ -71,7 +73,9 @@ enum TextureId
 	TEX_UNCHECKED,
 	TEX_STAR,
 	TEX_GCLOADER,
-	TEX_M2LOADER
+	TEX_M2LOADER,
+    TEX_BK_LOAD,
+    TEX_BK
 };
 
 extern GXTexObj ntscjTexObj;
@@ -96,6 +100,7 @@ typedef struct kbBtn_ {
 #define ENTRYMODE_FILE	 	(1<<4)
 
 uiDrawObj_t* DrawImage(int textureId, int x, int y, int width, int height, int depth, float s1, float s2, float t1, float t2, int centered);
+uiDrawObj_t* DrawBoykisser(int textureId, int x, int y, int width, int height, int depth, float s1, float s2, float t1, float t2, int centered);
 uiDrawObj_t* DrawTexObj(GXTexObj *texObj, int x, int y, int width, int height, int depth, float s1, float s2, float t1, float t2, int centered);
 uiDrawObj_t* DrawProgressBar(bool indeterminate, int percent, const char *message);
 uiDrawObj_t* DrawProgressLoading(int miniModePos);
@@ -125,6 +130,7 @@ uiDrawObj_t* DrawVertScrollBar(int x, int y, int width, int height, float scroll
 void DrawArgsSelector(const char *fileName);
 void DrawCheatsSelector(const char *fileName);
 void DrawGetTextEntry(int entryMode, const char *label, void *src, int size);
+//void InitTex();
 void DrawInit();
 void DrawLoadBackdrop();
 void DrawShutdown();
