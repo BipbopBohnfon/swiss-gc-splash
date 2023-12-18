@@ -3,6 +3,8 @@ This is a fork fo the original Swiss-GC repo. I'm just trying to add a splash sc
 
 Remember kids, sudo pacman -S dkp-libs/ppc-zlib before trying to use -lz in your ppc port of ld.
 
+GRRLIB also needs to be installed in the devkitpro gamecube portlibs. 
+
 
 # Swiss
 
